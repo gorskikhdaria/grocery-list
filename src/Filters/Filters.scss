@@ -1,0 +1,15 @@
+@import '../styles/variables';
+
+.filters {
+  > *:not(last-child) {
+    margin-bottom: 16px;
+  }
+
+  > select {
+    display: block;
+  }
+}
+
+.filter {
+  width: 300px;
+}

@@ -1,0 +1,48 @@
+@import '../../styles/variables';
+
+.entriesList {
+  width: 100%;
+}
+
+.listHeader,
+.listItem {
+  display: flex;
+  justify-content: space-between;
+
+  .name {
+    width: 40%;
+  }
+
+  .priority {
+    width: 20%;
+  }
+
+  .status {
+    width: 20%;
+  }
+}
+
+.listHeader {
+  color: $theme-color;
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.listItem {
+  list-style-type: none;
+  border: 1px solid $theme-color;
+  border-radius: 4px;
+  padding: 16px;
+  margin-bottom: 8px;
+
+  > span:not(last-child) {
+    margin-right: 16px;
+  }
+
+  .column {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}

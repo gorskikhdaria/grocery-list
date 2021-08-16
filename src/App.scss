@@ -1,0 +1,8 @@
+@import './styles/variables';
+
+html,
+body,
+.root {
+  color: $text-color;
+  min-height: 100vh;
+}
