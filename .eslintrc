@@ -1,0 +1,7 @@
+{
+  "plugins": ["prettier", "jsx-a11y"],
+  "extends": ["plugin:prettier/recommended"],
+  "rules": {
+    "prettier/prettier": "warn"
+  }
+}
