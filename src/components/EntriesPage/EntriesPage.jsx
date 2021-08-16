@@ -1,18 +1,20 @@
-import { useState, useEffect, useCallback } from 'react';
-import { Modal, Button } from '../common';
 import { Filters } from '../Filters';
 import { EntriesList } from './EntiresList';
 import './EntriesPage.scss';
+import { AddEntryButton } from '../AddEntryButton';
 
 const EntriesPage = () => {
-
   const entriesList = [];
 
   return (
     <div className="entriesPage">
-      <h1>Entries List</h1>
+      <div className="headerRow">
+        <h1>Entries List</h1>
+        <AddEntryButton />
+      </div>
+
       <div className="filtersRow">
-        <Filters/>
+        <Filters />
       </div>
       <EntriesList entiresList={entriesList} />
     </div>

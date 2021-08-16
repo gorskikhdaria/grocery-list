@@ -1,7 +1,7 @@
 import './App.scss';
-import Layout from './Layout/Layout';
-import EntriesPage from './EntriesPage/EntriesPage';
-import { ModalProvider } from './common/Modal';
+import Layout from './components/Layout/Layout';
+import EntriesPage from './components/EntriesPage/EntriesPage';
+import { ModalProvider, Modal } from './commonComponents/Modal';
 
 function App() {
   return (
@@ -9,6 +9,7 @@ function App() {
       <Layout>
         <EntriesPage />
       </Layout>
+      <Modal />
     </ModalProvider>
   );
 }

@@ -1,0 +1,16 @@
+@import '../../styles/variables';
+
+.entriesPage {
+  width: 100%;
+}
+
+.headerRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.filtersRow {
+  display: flex;
+  margin-bottom: 20px;
+}
