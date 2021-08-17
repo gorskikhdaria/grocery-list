@@ -3,18 +3,22 @@ import './AddEntryButton.scss';
 import { Button } from '../../commonComponents';
 import { ModalActions, ModalContext } from '../../commonComponents/Modal';
 import { EditEntryForm } from '../EditEntryForm';
-import { setEntryToLocalStorage } from '../../utils/localStorage';
+import {
+  EntriesActions,
+  EntriesContext,
+} from '../EntriesPage/EntiresList/EntriesStore';
 
 const AddEntryButton = ({}) => {
-  const { dispatch } = useContext(ModalContext);
+  const { dispatch: dispatchModal } = useContext(ModalContext);
+  const { dispatch: dispatchEntries } = useContext(EntriesContext);
 
   const onAddEntry = (entry) => {
-    setEntryToLocalStorage(entry);
-    dispatch({ type: ModalActions.Close });
+    dispatchEntries({ type: EntriesActions.AddEntry, payload: { entry } });
+    dispatchModal({ type: ModalActions.Close });
   };
 
   const openAddModal = () => {
-    dispatch({
+    dispatchModal({
       type: ModalActions.Open,
       payload: {
         content: <EditEntryForm buttonName="Add" onSubmit={onAddEntry} />,

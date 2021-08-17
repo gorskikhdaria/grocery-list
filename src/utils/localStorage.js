@@ -1,5 +1,4 @@
 import { LocalStorageEntriesKey } from '../const';
-import { v4 as uuid } from 'uuid';
 
 export const getLocalStorageValue = (key) => {
   try {
@@ -15,10 +14,16 @@ export const setLocalStorageValue = (key, value) => {
 
 export const setEntryToLocalStorage = (entry) => {
   const existingEntries = getLocalStorageValue(LocalStorageEntriesKey) || [];
-  existingEntries.unshift({ ...entry, id: uuid() });
+  const existingEntry = existingEntries.find(({ id }) => id === entry.id);
+  if (existingEntry) {
+    existingEntry.name = entry.name;
+    existingEntry.isAvailable = entry.isAvailable;
+  } else {
+    existingEntries.unshift(entry);
+  }
   setLocalStorageValue(LocalStorageEntriesKey, existingEntries);
 };
 
 export const getEntriesFromLocalStorage = () => {
-  return getLocalStorageValue(LocalStorageEntriesKey);
+  return getLocalStorageValue(LocalStorageEntriesKey) || [];
 };

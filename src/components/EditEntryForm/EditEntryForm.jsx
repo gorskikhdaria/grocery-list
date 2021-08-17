@@ -49,7 +49,7 @@ const EditEntryForm = ({ entry, buttonName, onSubmit }) => {
 
       <Button
         type="submit"
-        onClick={() => onSubmit({ name, priority, isAvailable })}
+        onClick={() => onSubmit({ id: entry?.id, name, priority, isAvailable })}
       >
         {buttonName}
       </Button>
