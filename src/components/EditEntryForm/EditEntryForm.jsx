@@ -47,7 +47,10 @@ const EditEntryForm = ({ entry, buttonName, onSubmit }) => {
         </div>
       </div>
 
-      <Button type="submit" onSubmit={onSubmit}>
+      <Button
+        type="submit"
+        onClick={() => onSubmit({ name, priority, isAvailable })}
+      >
         {buttonName}
       </Button>
     </div>

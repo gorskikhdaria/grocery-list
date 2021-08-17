@@ -3,11 +3,15 @@ import './AddEntryButton.scss';
 import { Button } from '../../commonComponents';
 import { ModalActions, ModalContext } from '../../commonComponents/Modal';
 import { EditEntryForm } from '../EditEntryForm';
+import { setEntryToLocalStorage } from '../../utils/localStorage';
 
 const AddEntryButton = ({}) => {
   const { dispatch } = useContext(ModalContext);
 
-  const onAddEntry = () => {};
+  const onAddEntry = (entry) => {
+    setEntryToLocalStorage(entry);
+    dispatch({ type: ModalActions.Close });
+  };
 
   const openAddModal = () => {
     dispatch({

@@ -13,11 +13,13 @@ const EntriesList = ({ entriesList }) => {
       <>
         {entriesList?.length ? (
           <ul>
-            {entriesList.map(({ id, name, priority, status }) => (
+            {entriesList.map(({ id, name, priority, isAvailable }) => (
               <li key={id} className="listItem">
                 <span className="column name">{name}</span>
                 <span className="column priority">{priority}</span>
-                <span className="column status">{status}</span>
+                <span className="column status">
+                  {isAvailable ? 'have' : 'ran put'}
+                </span>
               </li>
             ))}
           </ul>
