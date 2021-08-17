@@ -8,15 +8,20 @@ import { v4 as uuid } from 'uuid';
 const EntriesActions = {
   AddEntry: 'ADD_ENTRY',
   EditEntry: 'EDIT_ENTRY',
+  SetStatusFilter: 'SET_STATUS_FILTER',
 };
 
 const initialState = {
   entries: getEntriesFromLocalStorage(),
+  filters: [],
 };
 
 const reducer = (currentState, action) => {
   const newState = { ...currentState };
   switch (action.type) {
+    case EntriesActions.SetStatusFilter:
+      newState.statusFilter = action.payload.filter;
+      return newState;
     case EntriesActions.AddEntry:
       const newEntry = { ...action.payload.entry, id: uuid() };
       newState.entries = [newEntry, ...currentState.entries];

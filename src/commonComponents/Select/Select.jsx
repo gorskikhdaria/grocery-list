@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './Select.scss';
 
-const emptyOptionValue = 'Не выбрано';
+const emptyOptionValue = 'Not selected';
 
 export function Select({ options, onSelectOption, className, selectedValue }) {
   const [selected, setSelected] = useState(selectedValue || emptyOptionValue);

@@ -4,10 +4,24 @@ import { ModalActions, ModalContext } from '../../../commonComponents/Modal';
 import { EditEntryForm } from '../../EditEntryForm';
 import { EntriesActions, EntriesContext } from './EntriesStore';
 import classnames from 'classnames';
+import { StatusOption } from '../../Filters/Filters';
+
+const getFilteredEntries = (entries, statusFilter) => {
+  return entries.filter(({ isAvailable }) =>
+    statusFilter === StatusOption.Have ? isAvailable : !isAvailable
+  );
+};
 
 const EntriesList = () => {
   const { dispatch: dispatchModal } = useContext(ModalContext);
-  const { state, dispatch: dispatchEntries } = useContext(EntriesContext);
+  const {
+    state: { entries, statusFilter },
+    dispatch: dispatchEntries,
+  } = useContext(EntriesContext);
+
+  const filteredEntries = statusFilter
+    ? getFilteredEntries(entries, statusFilter)
+    : entries;
 
   const onEditEntry = (entry) => {
     dispatchEntries({ type: EntriesActions.EditEntry, payload: { entry } });
@@ -38,9 +52,9 @@ const EntriesList = () => {
       </div>
 
       <>
-        {state.entries?.length ? (
+        {filteredEntries?.length ? (
           <ul>
-            {state.entries.map(({ id, name, priority, isAvailable }) => (
+            {filteredEntries.map(({ id, name, priority, isAvailable }) => (
               <li
                 key={id}
                 className={classnames(

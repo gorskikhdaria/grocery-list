@@ -1,12 +1,13 @@
 @import '../../styles/variables';
 
 .filters {
-  > *:not(last-child) {
-    margin-bottom: 16px;
-  }
+  display: flex;
+  align-items: center;
 
   > select {
-    display: block;
+    .formValue {
+      margin-bottom: 0;
+    }
   }
 }
 
