@@ -3,9 +3,8 @@
 select {
   background: #FFF;
   border: 1px solid $theme-color;
-  border-radius: 8px;
-  font-size: 16px;
-  font-weight: bold;
+  border-radius: $border-radius;
+  font-size: $font-size-common;
   margin: 0;
   padding: 8px;
   text-align: center;

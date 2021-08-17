@@ -1,0 +1,13 @@
+@import '../../styles/variables';
+
+.input {
+  border: 1px $theme-color solid;
+  border-radius: $border-radius;
+  box-sizing: border-box;
+  font-size: $font-size-common;
+  color: black;
+  height: 40px;
+  outline: none;
+  padding: 0 16px;
+  width: 100%;
+}
