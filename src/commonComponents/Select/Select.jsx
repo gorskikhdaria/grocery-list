@@ -4,7 +4,9 @@ import './Select.scss';
 const emptyOptionValue = 'Not selected';
 
 export function Select({ options, onSelectOption, className, selectedValue }) {
-  const [selected, setSelected] = useState(selectedValue || emptyOptionValue);
+  const [selected, setSelected] = useState(
+    selectedValue || emptyOptionValue || false
+  );
 
   const onSelect = ({ target }) => {
     const value = target?.value === emptyOptionValue ? null : target?.value;

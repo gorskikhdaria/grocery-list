@@ -7,10 +7,10 @@ const priorityOptions = [1, 2, 3, 4, 5].map((item) => ({
   value: item,
 }));
 
-const EditEntryForm = ({ entry, buttonName, onSubmit }) => {
+const EditEntryForm = ({ entry, submitButtonName, onSubmit, onDelete }) => {
   const [name, setName] = useState(entry?.name || '');
   const [priority, setPriority] = useState(entry?.priority || 1);
-  const [isAvailable, setIsAvailable] = useState(entry?.isAvailable || true);
+  const [isAvailable, setIsAvailable] = useState(entry?.isAvailable);
 
   const onSelectPriorityOption = (priority) => {
     setPriority(priority);
@@ -47,11 +47,22 @@ const EditEntryForm = ({ entry, buttonName, onSubmit }) => {
         </div>
       </div>
 
+      {onDelete && (
+        <Button
+          type="submit"
+          className="editEntryButton"
+          onClick={() => onDelete(entry?.id)}
+        >
+          Delete
+        </Button>
+      )}
+
       <Button
         type="submit"
+        className="editEntryButton"
         onClick={() => onSubmit({ id: entry?.id, name, priority, isAvailable })}
       >
-        {buttonName}
+        {submitButtonName}
       </Button>
     </div>
   );

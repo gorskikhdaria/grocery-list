@@ -13,8 +13,8 @@
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 1;
-  min-width: 320px;
-  max-width: 600px;
+  min-width: 500px;
+  max-width: 800px;
   min-height: 150px;
 
   @media (max-width: $media-phone){

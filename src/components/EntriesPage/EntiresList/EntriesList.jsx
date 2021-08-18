@@ -28,6 +28,11 @@ const EntriesList = () => {
     dispatchModal({ type: ModalActions.Close });
   };
 
+  const onDeleteEntry = (id) => {
+    dispatchEntries({ type: EntriesActions.DeleteEntry, payload: { id } });
+    dispatchModal({ type: ModalActions.Close });
+  };
+
   const onEntryClick = (entry) => {
     dispatchModal({
       type: ModalActions.Open,
@@ -35,8 +40,9 @@ const EntriesList = () => {
         content: (
           <EditEntryForm
             entry={entry}
-            buttonName="Edit"
+            submitButtonName="Edit"
             onSubmit={onEditEntry}
+            onDelete={onDeleteEntry}
           />
         ),
       },

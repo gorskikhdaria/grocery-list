@@ -9,12 +9,18 @@ import { sortEntries } from '../../../utils/entries';
 const EntriesActions = {
   AddEntry: 'ADD_ENTRY',
   EditEntry: 'EDIT_ENTRY',
+  DeleteEntry: 'DELETE_ENTRY',
   SetStatusFilter: 'SET_STATUS_FILTER',
 };
 
 const initialState = {
   entries: getEntriesFromLocalStorage(),
   filters: [],
+};
+
+const setEntries = (newState, entries) => {
+  newState.entries = entries;
+  setEntriesToLocalStorage(entries);
 };
 
 const reducer = (currentState, action) => {
@@ -24,12 +30,13 @@ const reducer = (currentState, action) => {
       newState.statusFilter = action.payload.filter;
       return newState;
     case EntriesActions.AddEntry:
-      const newEntries = sortEntries([
-        { ...action.payload.entry, id: uuid() },
-        ...currentState.entries,
-      ]);
-      newState.entries = newEntries;
-      setEntriesToLocalStorage(newEntries);
+      setEntries(
+        newState,
+        sortEntries([
+          { ...action.payload.entry, id: uuid() },
+          ...currentState.entries,
+        ])
+      );
       return newState;
     case EntriesActions.EditEntry:
       const currentStateEntries = [...currentState.entries];
@@ -38,7 +45,13 @@ const reducer = (currentState, action) => {
       );
       existingEntry.name = action.payload.entry.name;
       existingEntry.isAvailable = action.payload.entry.isAvailable;
-      setEntriesToLocalStorage(sortEntries(currentStateEntries));
+      setEntries(newState, sortEntries(currentStateEntries));
+      return newState;
+    case EntriesActions.DeleteEntry:
+      setEntries(
+        newState,
+        currentState.entries.filter(({ id }) => id !== action.payload.id)
+      );
       return newState;
     default:
       return currentState;

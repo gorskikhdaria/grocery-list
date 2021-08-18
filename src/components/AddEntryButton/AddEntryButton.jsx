@@ -21,7 +21,7 @@ const AddEntryButton = ({}) => {
     dispatchModal({
       type: ModalActions.Open,
       payload: {
-        content: <EditEntryForm buttonName="Add" onSubmit={onAddEntry} />,
+        content: <EditEntryForm submitButtonName="Add" onSubmit={onAddEntry} />,
       },
     });
   };

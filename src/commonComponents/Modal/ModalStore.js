@@ -16,10 +16,12 @@ const reducer = (currentState, action) => {
     case ModalActions.Open:
       newState.isOpened = true;
       newState.content = action.payload.content;
+      document.body.style.overflowY = 'hidden';
       return newState;
     case ModalActions.Close:
       newState.isOpened = false;
       newState.content = null;
+      document.body.style.overflowY = 'initial';
       return newState;
     default:
       return currentState;
