@@ -1,9 +1,10 @@
 import createStore from '../../../utils/createStore';
 import {
   getEntriesFromLocalStorage,
-  setEntryToLocalStorage,
+  setEntriesToLocalStorage,
 } from '../../../utils/localStorage';
 import { v4 as uuid } from 'uuid';
+import { sortEntries } from '../../../utils/entries';
 
 const EntriesActions = {
   AddEntry: 'ADD_ENTRY',
@@ -23,17 +24,21 @@ const reducer = (currentState, action) => {
       newState.statusFilter = action.payload.filter;
       return newState;
     case EntriesActions.AddEntry:
-      const newEntry = { ...action.payload.entry, id: uuid() };
-      newState.entries = [newEntry, ...currentState.entries];
-      setEntryToLocalStorage(newEntry);
+      const newEntries = sortEntries([
+        { ...action.payload.entry, id: uuid() },
+        ...currentState.entries,
+      ]);
+      newState.entries = newEntries;
+      setEntriesToLocalStorage(newEntries);
       return newState;
     case EntriesActions.EditEntry:
-      const existingEntry = currentState.entries.find(
+      const currentStateEntries = [...currentState.entries];
+      const existingEntry = currentStateEntries.find(
         ({ id }) => id === action.payload.entry.id
       );
       existingEntry.name = action.payload.entry.name;
       existingEntry.isAvailable = action.payload.entry.isAvailable;
-      setEntryToLocalStorage(existingEntry);
+      setEntriesToLocalStorage(sortEntries(currentStateEntries));
       return newState;
     default:
       return currentState;

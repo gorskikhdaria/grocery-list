@@ -12,16 +12,8 @@ export const setLocalStorageValue = (key, value) => {
   window.localStorage.setItem(key, JSON.stringify(value));
 };
 
-export const setEntryToLocalStorage = (entry) => {
-  const existingEntries = getLocalStorageValue(LocalStorageEntriesKey) || [];
-  const existingEntry = existingEntries.find(({ id }) => id === entry.id);
-  if (existingEntry) {
-    existingEntry.name = entry.name;
-    existingEntry.isAvailable = entry.isAvailable;
-  } else {
-    existingEntries.unshift(entry);
-  }
-  setLocalStorageValue(LocalStorageEntriesKey, existingEntries);
+export const setEntriesToLocalStorage = (entries) => {
+  setLocalStorageValue(LocalStorageEntriesKey, entries);
 };
 
 export const getEntriesFromLocalStorage = () => {
